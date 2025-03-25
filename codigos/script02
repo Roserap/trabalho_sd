@@ -1,1 +1,136 @@
+const http = require('http');
+const url = require('url');
 
+http.createServer((req, res) => {
+    const dados = url.parse(req.url, true);
+
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.write(`
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Criação de Tabelas</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                h1 {
+                    font-size: 40px;
+                }
+                form {
+                    margin-top: 20px;
+                    display: inline-block;
+                    text-align: left;
+                }
+                .form-group {
+                    display: flex;
+                    align-items: center;
+                    margin: 10px 0;
+                }
+                label {
+                    flex: 1; /* Faz o label ocupar o espaço disponível */
+                    margin-right: 10px; /* Espaço entre o label e o campo */
+                }
+                input[type="text"], input[type="number"], select {
+                    flex: 2; /* Faz o campo ocupar o espaço disponível */
+                    padding: 8px;
+                }
+                input[type="radio"] {
+                    margin-right: 5px;
+                }
+                hr {
+                    border: 1px solid #ccc;
+                    margin: 20px 0;
+                }
+                input[type="submit"] {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Criação de Tabelas</h1>
+            <form action="/nova-tabela" method="POST">
+                <h2>Nova Tabela</h2>
+                
+                <div class="form-group">
+                    <label for="banco">Banco de Dados:</label>
+                    <select name="banco" id="banco" required>
+                        <option value="banco1">Banco 1</option>
+                        <option value="banco2">Banco 2</option>
+                        <option value="banco3">Banco 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nome">Nome da Tabela:</label>
+                    <input type="text" name="nome" id="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="campos">Campos:</label>
+                    <select name="campos" id="campos" multiple required>
+                        <option value="campo1">Campo 1</option>
+                        <option value="campo2">Campo 2</option>
+                        <option value="campo3">Campo 3</option>
+                    </select>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label>Descrição do Campo 1:</label>
+                    <input type="radio" name="chave1" value="chave"> Chave
+                    <input type="text" name="campo1_nome" placeholder="Nome do Campo" required>
+                    <select name="campo1_tipo">
+                        <option value="int">Int</option>
+                        <option value="float">Float</option>
+                        <option value="string">String</option>
+                        <option value="varchar">VARCHAR</option>
+                    </select>
+                    <input type="number" name="campo1_tamanho" placeholder="Tamanho" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição do Campo 2:</label>
+                    <input type="radio" name="chave2" value="chave"> Chave
+                    <input type="text" name="campo2_nome" placeholder="Nome do Campo" required>
+                    <select name="campo2_tipo">
+                        <option value="int">Int</option>
+                        <option value="float">Float</option>
+                        <option value="string">String</option>
+                        <option value="varchar">VARCHAR</option>
+                    </select>
+                    <input type="number" name="campo2_tamanho" placeholder="Tamanho" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição do Campo 3:</label>
+                                        <input type="radio" name="chave3" value="chave"> Chave
+                    <input type="text" name="campo3_nome" placeholder="Nome do Campo" required>
+                    <select name="campo3_tipo">
+                        <option value="int">Int</option>
+                        <option value="float">Float</option>
+                        <option value="string">String</option>
+                        <option value="varchar">VARCHAR</option>
+                    </select>
+                    <input type="number" name="campo3_tamanho" placeholder="Tamanho" required>
+                </div>
+
+                <hr>
+
+                <input type="submit" value="Criar Tabela">
+            </form>
+        </body>
+        </html>
+    `);
+
+    res.end();
+}).listen(3000);
+
+console.log('Servidor iniciado na porta 3000. Pressione Ctrl + C para derrubar.');
