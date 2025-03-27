@@ -1,1 +1,17 @@
-
+<section>
+  <h2>Criação de Banco de Dados</h2>
+  <form action="post" action="mailto:seunome@seudominio.com.br" enctype="multipart/form-data">
+    <fieldset style="width: 400px;">
+      <legend>Novo Banco de Dados</legend>
+      <div>
+        <label for="nome">
+          <span>Nome: </span>
+        </label>
+        <input type="text" id="nome" name="seunome" size="30" autofocus required />
+      </div>
+      <p>
+        <input type="submit" value="Criar Banco de Dados">
+      </p>
+    </fieldset>
+  </form>
+</section>
